@@ -1,0 +1,425 @@
+﻿@section Styles {
+	<style type="text/css">
+		.autocomplete-suggestions {
+			/* border: 1px solid #ddd; */
+			max-height: 150px;
+			overflow-y: auto;
+			/* position: absolute; */
+			background-color: white;
+			z-index: 9999;
+		}
+
+		.autocomplete-suggestion {
+			padding: 10px;
+			cursor: pointer;
+		}
+
+			.autocomplete-suggestion:hover {
+				background-color: #f0f0f0;
+			}
+	</style>
+}
+
+<div class="row">
+	<div class="col-12 col-lg-12">
+		<div class="card" style="">
+			<div class="card-header">
+				<div class="row align-items-center">
+					<div class="col">
+						<h4 class="card-title">Purchase Order Creation</h4>
+					</div><!--end col-->
+				</div> <!--end row-->
+
+			</div><!--end card-header-->
+
+			<div class="card-body">
+				<div class="row">
+					<div class="row col-lg-12 mt-2">
+						<div class="col-lg-2 mt-2">PO Date</div>
+						<div class="col-lg-4">
+							<input class="form-control mt-2" type="date" value="" id="txtPODate">
+						</div>
+						<div class="col-lg-2 mt-2">Expected Delivery Date</div>
+						<div class="col-lg-4">
+							<input class="form-control mt-2" type="date" value="" id="txtExpDeliveryDate">
+						</div>
+					</div>
+					<div class="row col-lg-12 mt-2">
+						<div class="col-lg-2">Warehouse</div>
+						<div class="col-lg-4">
+							<select id="" class="form-select" aria-label="Default select example">
+								<option value="0" selected="selected">--</option>
+								<option value="1">Global Distribution Center</option>
+								<option value="1">Metro Warehousing Solutions</option>
+								<option value="1">Pinnacle Storage Facility</option>
+								<option value="1">Elite Inventory Hub</option>
+							</select>
+						</div>
+						<div class="col-lg-2">Delivery Address</div>
+						<div class="col-lg-4">
+							<input type="text" class="form-control" id="txtDeliveryAddress" placeholder="enter delivery address">
+						</div>
+					</div>
+					<div class="row col-lg-12 mt-2">
+						<div class="col-lg-2">Invoice Address</div>
+						<div class="col-lg-4">
+							<input type="text" class="form-control" id="txtInvoiceAddress" placeholder="enter invoice address">
+						</div>
+						<div class="col-lg-2">Remarks</div>
+						<div class="col-lg-4">
+							<textarea class="form-control" placeholder="Enter remarks" rows="5" id="txtRemarks"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="row col-lg-12">
+					<div class="input-group mt-2">
+						<div class="col-lg-2"><span class="input-group-text" id="spnSkuName">SKU Name</span></div>
+						<div class="col-lg-10"><input type="text" class="form-control" placeholder="type sku details" autocomplete="off" id="txtSearchSkuName"></div>
+					</div>
+				</div>
+				<div class="row col-lg-12 autocomplete-suggestions" id="autocomplete-suggestions" style="border-bottom: 1px solid #ddd;"></div>
+			</div>
+			<div class="card-body">
+				<form>
+					<div class="row">
+						<div class="table-responsive" id="divPOPrdDetails">
+							<table class="table mb-0 tblPOPrdDetails" id="tblPOPrdDetails">
+								<thead class="thead-light">
+									<tr>
+										<th>HSN Code</th>
+										<th>Bar Code</th>
+										<th>SKU Code</th>
+										<th>SKU Name</th>
+										<th>SIH Qty</th>
+										<th>Unit Price (RM)</th>
+										<th>Piece Qty</th>
+										<th>Discount(%)</th>
+										<th>Discount Amount (RM)</th>
+										<th>Value (RM)</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr><td class="text-warning">No data found</td></tr>
+									@* <tr class="product-row">
+										<td id="tdHSNCode">85183000</td>
+										<td id="tdBarCode">8901234567890</td>
+										<td id="tdSKUCode" class="tdSKUCode">LAP-001</td>
+										<td id="tdSKUName" class="tdSKUName">Wireless Mouse</td>
+										<td id="tdSIHQty" class="tdSIHQty">50</td>
+										<td id="tdUnitPrice" class="tdUnitPrice">35</td>
+										<td id="tdPieceQty" class="tdPieceQty" ondblclick="makeEditableWholeNumber(this)">1<i class="las la-pen text-secondary font-16 ms-2"></i></td>
+										<td id="tdDiscountPer" class="tdDiscountPer">10</td>
+										<td id="tdDiscountAmt" class="tdDiscountAmt">3.5</td>
+										<td id="tdDiscountPer" class="tdDiscountPer" ondblclick="makeEditableDecimal(this)">10<i class="las la-pen text-secondary font-16"></i></td>
+										<td id="tdDiscountAmt" class="tdDiscountAmt" ondblclick="makeEditableDecimal(this)">3.5<i class="las la-pen text-secondary font-16"></i></td>
+										<td id="tdSKULineValue" class="tdSKULineValue">31.5</td>
+										<td>
+											<a href="#" onclick="deleteRowData(this);" class="ms-2"><i class="las la-trash-alt text-secondary font-16 remove-row"></i></a>
+										</td>
+									</tr> *@
+								</tbody>
+							</table>
+							 <div id="grandTotal" class="text-end">Grand Total: 0.00</div> 
+						</div>
+					</div>
+					<div class="row mt-4 text-end ">
+						<div class="col-lg-12 ">
+							<button id="btnPODraft" class="btn btn-sm btn-de-primary me-2"><i class="fab fa-firstdraft me-2"></i>Draft</button>
+							<button id="btnPOCreate" class="btn btn-sm btn-de-primary"><i class="mdi mdi-check-all me-2"></i>Create</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="card-footer">
+				<div class="row text-end ">
+					<div class="col-lg-12 ">
+						@* <button id="submitBtn" class="btn btn-de-primary"><i class="mdi mdi-check-all me-2"></i>Create</button> *@
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+@section Scripts {
+
+	<script>
+			$(document).ready(function(){
+			// Sample product data
+			var products = [
+		{ HSNCode: '85183000', BarCode: '8901234567890', SKUCode: 'LAP-001', SKUName: 'Wireless Mouse', UnitPrice:35, SIHQty: 50, PieceQty: 0, DiscountPer: 10, DiscountAmount: 3.5, Value: 0.00 },
+		{ HSNCode: '84713000', BarCode: '8901234567891', SKUCode: 'CHR-001', SKUName: 'Mechanical Keyboard', UnitPrice:75, SIHQty: 30, PieceQty: 0, DiscountPer: 5, DiscountAmount: 3.75, Value: 0.00 },
+		{ HSNCode: '85044090', BarCode: '8901234567892', SKUCode: 'USB-001', SKUName: 'USB-C Hub', UnitPrice:60, SIHQty: 40, PieceQty: 0, DiscountPer: 15, DiscountAmount: 9, Value: 0.00 },
+		{ HSNCode: '84733090', BarCode: '8901234567893', SKUCode: 'KBD-001', SKUName: 'Bluetooth Speaker', UnitPrice:150, SIHQty: 20, PieceQty: 0, DiscountPer: 20, DiscountAmount: 30, Value: 0.00 },
+		{ HSNCode: '85235100', BarCode: '8901234567894', SKUCode: 'NET-001', SKUName: 'Laptop Stand', UnitPrice:45, SIHQty: 25, PieceQty: 0, DiscountPer: 10, DiscountAmount: 4.5, Value: 0.00 },
+		{ HSNCode: '85177090', BarCode: '8901234567895', SKUCode: 'CAM-001', SKUName: 'HD Webcam', UnitPrice:100, SIHQty: 15, PieceQty: 0, DiscountPer: 5, DiscountAmount: 5, Value: 0.00 },
+		{ HSNCode: '84715090', BarCode: '8901234567896', SKUCode: 'MON-001', SKUName: 'Ergonomic Chair', UnitPrice:400, SIHQty: 10, PieceQty: 0, DiscountPer: 0, DiscountAmount: 0, Value: 0.00 },
+		{ HSNCode: '84715091', BarCode: '890123456796', SKUCode: 'HDP-001', SKUName: 'Wireless Headphones', UnitPrice:35, SIHQty: 50, PieceQty: 0, DiscountPer: 10, DiscountAmount: 3.5, Value: 0.00 },
+		{ HSNCode: '84715092', BarCode: '890123456797', SKUCode: 'TAB-001', SKUName: 'Android Tablet', UnitPrice:75, SIHQty: 30, PieceQty: 0, DiscountPer: 5, DiscountAmount: 3.75, Value: 0.00 },
+		{ HSNCode: '84715093', BarCode: '890123456798', SKUCode: 'PWB-001', SKUName: 'Power Bank 20000mAh', UnitPrice:60, SIHQty: 40, PieceQty: 0, DiscountPer: 15, DiscountAmount: 9, Value: 0.00 },
+		{ HSNCode: '84715094', BarCode: '890123456799', SKUCode: 'MSE-001', SKUName: 'Gaming Mouse', UnitPrice:150, SIHQty: 20, PieceQty: 0, DiscountPer: 20, DiscountAmount: 30, Value: 0.00 },
+		{ HSNCode: '84715095', BarCode: '890123456800', SKUCode: 'SSD-001', SKUName: '1TB SSD Drive', UnitPrice:45, SIHQty: 25, PieceQty: 0, DiscountPer: 10, DiscountAmount: 4.5, Value: 0.00 },
+		{ HSNCode: '84715096', BarCode: '890123456801', SKUCode: 'BT-001', SKUName: 'Bluetooth Speaker', UnitPrice:100, SIHQty: 15, PieceQty: 0, DiscountPer: 5, DiscountAmount: 5, Value: 0.00 },
+		{ HSNCode: '84715097', BarCode: '890123456802', SKUCode: 'AIO-001', SKUName: 'All-in-One PC', UnitPrice:400, SIHQty: 10, PieceQty: 0, DiscountPer: 0, DiscountAmount: 0, Value: 0.00 },
+		{ HSNCode: '84715098', BarCode: '890123456803', SKUCode: 'MIC-001', SKUName: 'USB Microphone', UnitPrice:45, SIHQty: 25, PieceQty: 0, DiscountPer: 10, DiscountAmount: 4.5, Value: 0.00 }
+							];
+
+			$('#txtSearchSkuName').on('input', function() {
+				var searchTerm = $(this).val().toLowerCase();
+				var suggestions = products.filter(function(product) {
+					return product.SKUName.toLowerCase().includes(searchTerm.toLowerCase());
+				});
+
+				// Clear previous suggestions
+				$('#autocomplete-suggestions').empty();
+
+				// Display suggestions
+				suggestions.forEach(function(product) {
+					$('#autocomplete-suggestions').append(`
+						<div class="row"><div class="col-lg-2"></div><div class="col-lg-10 autocomplete-suggestion" data-id="${product.SKUCode}">
+							<span class="text-success fw-bold">HSN Code: </span>${product.HSNCode} <span class="text-primary fw-bold">||</span> <span class="text-success fw-bold">SKU Code: </span>${product.SKUCode} <span class="text-primary fw-bold">||</span> <span class="text-success fw-bold">SKU Name: </span>${product.SKUName}
+						</div>
+						</div>
+					`);
+				});
+
+				// Click event for suggestions
+				$('.autocomplete-suggestion').on('click', function() {
+					var productCode = $(this).data('id');
+					var selectedProduct = products.find(function(product) {
+						return product.SKUCode === productCode;
+					});
+
+					$('#tblPOPrdDetails tbody tr').each(function(){
+					var noData = $(this).find('td:eq(0)').text(); // Get the value of the 1th column
+					var skuCodeData = $(this).find('td:eq(2)').text(); // Get the value of the 1th column
+							if (noData == 'No data found') {
+						$('#tblPOPrdDetails tbody').empty();
+					}
+
+					//If the Product already there in the grid then ignore
+					if (skuCodeData == selectedProduct.SKUCode) {
+						return false;
+					}
+					else{
+						// Add selected product to table
+					$('#tblPOPrdDetails tbody').append(`
+						<tr class="product-row">
+									<td id="tdHSNCode class="tdHSNCode"">${selectedProduct.HSNCode}</td>
+									<td id="tdBarCode class="tdBarCode"">${selectedProduct.BarCode}</td>
+									<td id="tdSKUCode" class="tdSKUCode">${selectedProduct.SKUCode}</td>
+									<td id="tdSKUName" class="tdSKUName">${selectedProduct.SKUName}</td>
+									<td id="tdUnitPrice" class="tdUnitPrice">${selectedProduct.UnitPrice.toFixed(2)}</td>
+									<td id="tdSIHQty" class="tdSIHQty">${selectedProduct.SIHQty}</td>
+									<td id="tdPieceQty" class="tdPieceQty" ondblclick="makeEditableWholeNumber(this)">${selectedProduct.PieceQty}<i class="las la-pen text-secondary font-16 ms-2"></i></td>
+									<td id="tdDiscountPer" class="tdDiscountPer">${selectedProduct.DiscountPer.toFixed(2)}</td>
+									<td id="tdDiscountAmt" class="tdDiscountAmt">${selectedProduct.DiscountAmount.toFixed(2)}</td>
+									<td id="tdSKULineValue" class="tdSKULineValue">${selectedProduct.Value.toFixed(2)}</td>
+									<td>
+										<a href="#" onclick="deleteRowData(this);" class="ms-2"><i class="las la-trash-alt text-secondary font-16 remove-row"></i></a>
+									</td>
+						</tr>
+					`);
+					}
+				});
+
+					
+
+					// Clear search box and suggestions
+					$('#txtSearchSkuName').val('');
+					$('#autocomplete-suggestions').empty();
+				});
+			});
+
+			// Close suggestions when clicking outside
+			$(document).on('click', function(event) {
+				if (!$(event.target).closest('#txtSearchSkuName').length) {
+					$('#autocomplete-suggestions').empty();
+				}
+			});
+		});
+
+			
+
+	</script>
+
+	<script>
+		// jQuery code will go here
+		$(document).ready(function() {
+			function calculateTotal() {
+				let grandTotal = 0;
+
+				$('.product-row').each(function() {
+					let unitPrice = parseFloat($(this).find('.tdUnitPrice').text());
+					let quantity = parseFloat($(this).find('.tdPieceQty').text());
+					let discountPer = parseFloat($(this).find('.tdDiscountPer').text());
+					let discountAmt = parseFloat($(this).find('.tdDiscountAmt').text());
+
+					// Calculate total for this row
+					let totalBeforeDiscount = unitPrice * quantity;
+					let discountPerAmount = (discountPer / 100) * totalBeforeDiscount;
+					let totalAfterDiscount = totalBeforeDiscount - discountPerAmount - discountAmt;
+
+					if (isNaN(totalAfterDiscount) || totalAfterDiscount < 0) {totalAfterDiscount=0.00;}
+					$(this).find('.tdSKULineValue').text(totalAfterDiscount.toFixed(2));
+					grandTotal += totalAfterDiscount;
+				});
+
+				$('#grandTotal').text('Grand Total: ' + grandTotal.toFixed(2));
+			}
+
+			// Event listeners for quantity and discount changes
+			$(document).on('td', '.tdPieceQty, .tdDiscountPer, .tdDiscountAmt', function() {
+				calculateTotal();
+			});
+
+			// Initial calculation
+			calculateTotal();
+		});
+	</script>
+
+
+	<script>
+			// $('#numberInput').on('input', function() {
+			// 		var value = $(this).val();
+			// 		if (value < 0) {
+			// 			$(this).val(0);
+			// 		}
+			// 	});
+				function calculateTotal1() {
+						let grandTotal = 0;
+
+						$('.product-row').each(function() {
+							let unitPrice = parseFloat($(this).find('.tdUnitPrice').text());
+							let quantity = parseFloat($(this).find('.tdPieceQty').text());
+							let discountPer = parseFloat($(this).find('.tdDiscountPer').text());
+							let discountAmt = parseFloat($(this).find('.tdDiscountAmt').text());
+
+							// Calculate total for this row
+							let totalBeforeDiscount = unitPrice * quantity;
+							let discountPerAmount = (discountPer / 100) * totalBeforeDiscount;
+							let totalAfterDiscount = totalBeforeDiscount - discountPerAmount - discountAmt;
+
+							if (isNaN(totalAfterDiscount) || totalAfterDiscount < 0) {totalAfterDiscount=0.00;}
+							$(this).find('.tdSKULineValue').text(totalAfterDiscount.toFixed(2));
+							grandTotal += totalAfterDiscount;
+						});
+
+						$('#grandTotal').text('Grand Total: ' + grandTotal.toFixed(2));
+					}
+
+			function makeEditableWholeNumber(td) {
+			if (td.hasAttribute('data-editing')) return;
+
+			td.setAttribute('data-editing', true);
+			var originalContent = td.textContent;
+			td.innerHTML = '<input id="numberInput" type="number" step="1" min="0" onkeydown="return validateInput(event)" oninput="this.value = Math.max(0, this.value)" class="form-control" value="' + originalContent + '">';
+
+			var input = td.querySelector('input');
+			input.focus();
+
+			input.addEventListener('blur', function() {
+				td.textContent = this.value;
+				td.removeAttribute('data-editing');
+				let icon = document.createElement('i');
+					icon.className = 'las la-pen text-secondary font-16 ms-2';
+				td.appendChild(icon);
+				});
+
+			input.addEventListener('keydown', function(event) {
+				if (event.key === 'Enter') {
+					this.blur();
+				}
+			});
+
+			input.addEventListener('blur', calculateTotal1);
+			input.addEventListener('keydown', calculateTotal1);
+
+		}
+				function makeEditableDecimal(td) {
+				if (td.hasAttribute('data-editing')) return;
+
+				td.setAttribute('data-editing', true);
+				var originalContent = td.textContent;
+			   td.innerHTML = '<input id="numberInput" type="number" step="0.01" min="0" onkeydown="return validateInput(event)" oninput="this.value = Math.max(0, this.value)" class="form-control" value="' + originalContent + '">';
+
+				var input = td.querySelector('input');
+				input.focus();
+
+				input.addEventListener('blur', function() {
+					td.textContent = this.value;
+					td.removeAttribute('data-editing');
+					let icon = document.createElement('i');
+						icon.className = 'las la-pen text-secondary font-16 ms-2';
+					td.appendChild(icon);
+				});
+
+				input.addEventListener('keydown', function(event) {
+					if (event.key === 'Enter') {
+						this.blur();
+					}
+				});
+						input.addEventListener('blur', calculateTotal1);
+						input.addEventListener('keydown', calculateTotal1);
+
+			}
+
+				let swalWithBootstrapButtons1 = Swal.mixin({
+					customClass: {
+						confirmButton: "btn btn-de-primary",
+						cancelButton: "btn btn-de-danger me-2"
+					},
+					buttonsStyling: false
+				});
+
+				function deleteRowData(comp){
+					swalWithBootstrapButtons1.fire({
+						title: "Are you sure?",
+						text: "Do You want to delete this?",
+						icon: "warning",
+						showCancelButton: true,
+						confirmButtonText: '<i class="mdi mdi-check-all me-2"></i>Delete',
+						cancelButtonText: '<i class="mdi mdi-window-close me-2"></i>Close',
+						// confirmButtonText: "Yes, delete it!",
+						// cancelButtonText: "No, cancel!",
+						reverseButtons: true,
+						allowOutsideClick: false
+					}).then((result) => {
+						if (result.isConfirmed) {
+							$(comp).closest('tr')[0].remove();
+							 swalWithBootstrapButtons1.fire({
+										title: "Deleted!",
+										text: "Deleted successfully!",
+										icon: "success",
+										allowOutsideClick: false
+									}).then(okay => {
+										if (okay) {
+											calculateTotal1();
+										}
+									});
+						}
+					});
+				}
+				
+				$('#btnPODraft').click(function() {
+				swalWithBootstrapButtons1.fire({ title: "Purchase Order Drafted!",
+							 text: "Purchase Order drafted successfully!",
+						 icon: "success",
+							  allowOutsideClick: false}).then(okay => {
+						   if (okay) {
+							location.reload();
+						  }
+						});
+			});
+			$('#btnPOCreate').click(function() {
+				swalWithBootstrapButtons1.fire({ title: "Purchase Order Created!",
+							 text: "Purchase Order created successfully!",
+						 icon: "success",
+							  allowOutsideClick: false}).then(okay => {
+						   if (okay) {
+							location.reload();
+						  }
+						});
+			});
+	</script>
+}
