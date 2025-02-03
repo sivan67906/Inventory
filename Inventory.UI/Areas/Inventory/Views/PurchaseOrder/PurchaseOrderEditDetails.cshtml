@@ -25,9 +25,9 @@
 		<div class="card" style="">
 			<div class="card-header">
 				<div class="row align-items-center">
-					<div class="col">
-						<h4 class="card-title">Purchase Order Creation</h4>
-					</div><!--end col-->
+					<div class="col-lg-6">
+						<h4 class="card-title">Edit Purchase Order Details</h4>
+					</div>
 				</div> <!--end row-->
 
 			</div><!--end card-header-->
@@ -35,39 +35,48 @@
 			<div class="card-body">
 				<div class="row">
 					<div class="row col-lg-12 mt-2">
+						<div class="col-lg-2 mt-2">PO Number</div>
+						<div class="col-lg-4">
+							<input class="form-control mt-2" type="text" value="PRJ/PO/20250111/005" id="txtPONumber" disabled>
+						</div>
 						<div class="col-lg-2 mt-2">PO Date</div>
 						<div class="col-lg-4">
-							<input class="form-control mt-2" type="date" value="" id="txtPODate">
-						</div>
-						<div class="col-lg-2 mt-2">Expected Delivery Date</div>
-						<div class="col-lg-4">
-							<input class="form-control mt-2" type="date" value="" id="txtExpDeliveryDate">
+							<input class="form-control mt-2" type="date" value="2025-01-11" id="txtPODate" disabled>
 						</div>
 					</div>
 					<div class="row col-lg-12 mt-2">
+						<div class="col-lg-2 mt-2">Expected Delivery Date</div>
+						<div class="col-lg-4">
+							<input class="form-control mt-2" type="date" value="2025-01-20" id="txtExpDeliveryDate">
+						</div>
 						<div class="col-lg-2">Warehouse</div>
 						<div class="col-lg-4">
 							<select id="" class="form-select" aria-label="Default select example">
-								<option value="0" selected="selected">--</option>
-								<option value="1">Global Distribution Center</option>
+								<option value="0">--</option>
+								<option value="1" selected="selected">Global Distribution Center</option>
 								<option value="1">Metro Warehousing Solutions</option>
 								<option value="1">Pinnacle Storage Facility</option>
 								<option value="1">Elite Inventory Hub</option>
 							</select>
 						</div>
+					</div>
+					<div class="row col-lg-12 mt-2">
 						<div class="col-lg-2">Delivery Address</div>
 						<div class="col-lg-4">
-							<input type="text" class="form-control" id="txtDeliveryAddress" placeholder="enter delivery address">
+							<input type="text" class="form-control" id="txtDeliveryAddress" placeholder="enter delivery address" value="1234, Jalan Bukit Bintang,Kuala Lumpur, 55100">
+						</div>
+						<div class="col-lg-2">Invoice Address</div>
+						<div class="col-lg-4">
+							<input type="text" class="form-control" id="txtInvoiceAddress" placeholder="enter invoice address" value="1234, Jalan Bukit Bintang,Kuala Lumpur, 55100">
 						</div>
 					</div>
 					<div class="row col-lg-12 mt-2">
-						<div class="col-lg-2">Invoice Address</div>
-						<div class="col-lg-4">
-							<input type="text" class="form-control" id="txtInvoiceAddress" placeholder="enter invoice address">
-						</div>
 						<div class="col-lg-2">Remarks</div>
 						<div class="col-lg-4">
-							<textarea class="form-control" placeholder="Enter remarks" rows="5" id="txtRemarks"></textarea>
+							<textarea class="form-control" placeholder="Enter remarks" rows="5" id="txtRemarks">PO Created against Global Distribution Center warehouse</textarea>
+						</div>
+						<div class="col-lg-2"></div>
+						<div class="col-lg-4">
 						</div>
 					</div>
 				</div>
@@ -100,43 +109,67 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr><td class="text-warning">No data found</td></tr>
-									@* <tr class="product-row">
-										<td id="tdHSNCode">85183000</td>
-										<td id="tdBarCode">8901234567890</td>
+									<tr class="product-row">
+										<td id="tdHSNCode class=" tdhsncode""="">85183000</td>
+										<td id="tdBarCode class=" tdbarcode""="">8901234567890</td>
 										<td id="tdSKUCode" class="tdSKUCode">LAP-001</td>
 										<td id="tdSKUName" class="tdSKUName">Wireless Mouse</td>
+										<td id="tdUnitPrice" class="tdUnitPrice">35.00</td>
 										<td id="tdSIHQty" class="tdSIHQty">50</td>
-										<td id="tdUnitPrice" class="tdUnitPrice">35</td>
-										<td id="tdPieceQty" class="tdPieceQty" ondblclick="makeEditableWholeNumber(this)">1<i class="las la-pen text-secondary font-16 ms-2"></i></td>
-										<td id="tdDiscountPer" class="tdDiscountPer">10</td>
-										<td id="tdDiscountAmt" class="tdDiscountAmt">3.5</td>
-										<td id="tdDiscountPer" class="tdDiscountPer" ondblclick="makeEditableDecimal(this)">10<i class="las la-pen text-secondary font-16"></i></td>
-										<td id="tdDiscountAmt" class="tdDiscountAmt" ondblclick="makeEditableDecimal(this)">3.5<i class="las la-pen text-secondary font-16"></i></td>
-										<td id="tdSKULineValue" class="tdSKULineValue">31.5</td>
+										<td id="tdPieceQty" class="tdPieceQty" ondblclick="makeEditableWholeNumber(this)">5<i class="las la-pen text-secondary font-16 ms-2"></i></td>
+										<td id="tdDiscountPer" class="tdDiscountPer">10.00</td>
+										<td id="tdDiscountAmt" class="tdDiscountAmt">3.50</td>
+										<td id="tdSKULineValue" class="tdSKULineValue">154.00</td>
 										<td>
 											<a href="#" onclick="deleteRowData(this);" class="ms-2"><i class="las la-trash-alt text-secondary font-16 remove-row"></i></a>
 										</td>
-									</tr> *@
+									</tr>
+
+									<tr class="product-row">
+										<td id="tdHSNCode class=" tdhsncode""="">85177090</td>
+										<td id="tdBarCode class=" tdbarcode""="">8901234567895</td>
+										<td id="tdSKUCode" class="tdSKUCode">CAM-001</td>
+										<td id="tdSKUName" class="tdSKUName">HD Webcam</td>
+										<td id="tdUnitPrice" class="tdUnitPrice">100.00</td>
+										<td id="tdSIHQty" class="tdSIHQty">15</td>
+										<td id="tdPieceQty" class="tdPieceQty" ondblclick="makeEditableWholeNumber(this)">18<i class="las la-pen text-secondary font-16 ms-2"></i></td>
+										<td id="tdDiscountPer" class="tdDiscountPer">5.00</td>
+										<td id="tdDiscountAmt" class="tdDiscountAmt">5.00</td>
+										<td id="tdSKULineValue" class="tdSKULineValue">1705.00</td>
+										<td>
+											<a href="#" onclick="deleteRowData(this);" class="ms-2"><i class="las la-trash-alt text-secondary font-16 remove-row"></i></a>
+										</td>
+									</tr>
+
+									<tr class="product-row">
+										<td id="tdHSNCode class=" tdhsncode""="">84733090</td>
+										<td id="tdBarCode class=" tdbarcode""="">8901234567893</td>
+										<td id="tdSKUCode" class="tdSKUCode">KBD-001</td>
+										<td id="tdSKUName" class="tdSKUName">Bluetooth Speaker</td>
+										<td id="tdUnitPrice" class="tdUnitPrice">150.00</td>
+										<td id="tdSIHQty" class="tdSIHQty">20</td>
+										<td id="tdPieceQty" class="tdPieceQty" ondblclick="makeEditableWholeNumber(this)">8<i class="las la-pen text-secondary font-16 ms-2"></i></td>
+										<td id="tdDiscountPer" class="tdDiscountPer">20.00</td>
+										<td id="tdDiscountAmt" class="tdDiscountAmt">30.00</td>
+										<td id="tdSKULineValue" class="tdSKULineValue">690.00</td>
+										<td>
+											<a href="#" onclick="deleteRowData(this);" class="ms-2"><i class="las la-trash-alt text-secondary font-16 remove-row"></i></a>
+										</td>
+									</tr>
+
+
 								</tbody>
 							</table>
-							 <div id="grandTotal" class="text-end">Grand Total: 0.00</div> 
+							<div id="grandTotal" class="text-end">Grand Total: 2789.00</div>
 						</div>
 					</div>
 					<div class="row mt-4 text-end ">
 						<div class="col-lg-12 ">
-							<button id="btnPODraft" class="btn btn-sm btn-de-primary me-2"><i class="fab fa-firstdraft me-2"></i>Draft</button>
-							<button id="btnPOCreate" class="btn btn-sm btn-de-primary"><i class="mdi mdi-check-all me-2"></i>Create</button>
+							<button asp-area="Inventory" asp-controller="PurchaseOrder" asp-action="ViewPurchaseOrder" id="btnPOBack" class="btn btn-sm btn-de-primary me-2"><i class="mdi mdi-keyboard-return me-2"></i>Back</button>
+							<button asp-area="Inventory" asp-controller="PurchaseOrder" asp-action="ViewPurchaseOrder" id="btnPOUpdate" class="btn btn-sm btn-de-primary"><i class="mdi mdi-check-all me-2"></i>Update</button>
 						</div>
 					</div>
 				</form>
-			</div>
-			<div class="card-footer">
-				<div class="row text-end ">
-					<div class="col-lg-12 ">
-						@* <button id="submitBtn" class="btn btn-de-primary"><i class="mdi mdi-check-all me-2"></i>Create</button> *@
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>
@@ -144,6 +177,12 @@
 @section Scripts {
 
 	<script>
+
+		const today = new Date().toISOString().split('T')[0];
+		// document.getElementById("txtPODate").setAttribute('min', today);
+		document.getElementById("txtExpDeliveryDate").setAttribute('min', today);
+
+
 			$(document).ready(function(){
 			// Sample product data
 			var products = [

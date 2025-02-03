@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Inventory\Controllers\InventoryController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\matrica\assets\images\.DS_Store" />
     <None Include="wwwroot\matrica\assets\js\.DS_Store" />
     <None Include="wwwroot\matrica\assets\scss\.DS_Store" />
@@ -25,5 +29,12 @@
 
 	<ItemGroup>
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Update="Areas\Inventory\Views\PurchaseOrder\ViewPurchaseOrderDetails.cshtml">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
 	</ItemGroup>
 </Project>

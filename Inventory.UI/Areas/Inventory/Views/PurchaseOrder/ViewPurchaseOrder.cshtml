@@ -1,0 +1,296 @@
+﻿@section Styles {
+    <style type="text/css">
+
+    </style>
+}
+<div class="row">
+    <div class="card">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h4 class="card-title">Purchase Order</h4>
+                </div>
+                <div class="col-lg-6 text-end">
+                    <a asp-area="Inventory" asp-controller="PurchaseOrder" asp-action="CreatePurchaseOrder" class="btn btn-de-primary">
+                        <i class="fas fa-plus me-2"></i>Create Purchase Order
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="mb-3 text-start">
+                                <label for="example-text-input">
+                                    Search Filter
+                                    <span class="f-14 mr-1 text-danger">*</span>
+                                </label>
+                                <select id="filterDropdown" onchange="updateSearchFields()" class="form-select mt-2">
+                                    <option value="" disabled selected>--</option>
+                                    <option value="poNumber">Search by PO Number</option>
+                                    <option value="dateBetween">Date Between PO Date</option>
+                                    <option value="statusPO">Search by PO Status</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="row" id="searchFields">
+                        <div class="col-lg-12" id="divPOSearch">
+                            <div class="mb-3 text-start">
+                                <label for="nameSearch">
+                                    Enter PO Number
+                                    <span class="f-14 mr-1 text-danger">*</span>
+                                </label>
+                                <input class="form-control mt-2" type="text" value="" id="nameSearch">
+                            </div>
+                        </div>
+                        <div class="col-lg-12" id="divDateBetweenSearch">
+                            <div class="mb-3 text-start">
+                                <label for="startDate endDate">
+                                    Select Date Between
+                                    <span class="f-14 mr-1 text-danger">*</span>
+                                </label>
+                                <div class="row ">
+                                    <div class="col-lg-6">
+                                        <input class="form-control mt-2" type="date" value="" id="startDate">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <input class="form-control mt-2" type="date" value="" id="endDate">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-12" id="divstatusPO">
+                            <div class="mb-3 text-start">
+                                <label for="sltPOStatus">
+                                    Select PO Status
+                                    <span class="f-14 mr-1 text-danger">*</span>
+                                </label>
+                                <select id="sltPOStatus" onchange="updateSearchFields()" class="form-select mt-2">
+                                    <option value="" disabled selected>--</option>
+                                    <option value="statusPO">Open</option>
+                                    <option value="statusPO">Drafted</option>
+                                    <option value="statusPO">Created Sales Order</option>
+                                    <option value="statusPO">Rejected</option>
+                                    <option value="statusPO">Ready to Receive</option>
+                                    <option value="statusPO">InTransit</option>
+                                    <option value="statusPO">Received</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="row">
+                        <div class="col-lg-12 text-end mt-1">
+                            <button type="button" class="btn btn-warning bg-opacity-75 mt-4">
+                                <i class="mdi mdi-filter me-2"></i>Filter</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table  mb-0">
+                        <thead class="thead-light">
+                            <tr>
+                                <th class="d-none">Id</th>
+                                <th>PO Number</th>
+                                <th>PO Date</th>
+                                <th>Exp. Delivery Date</th>
+                                <th>Total Value</th>
+                                <th>Status</th>
+                                <th class="ms-1">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="d-none">1</td>
+                                <td>PRJ/PO/20250112/006</td>
+                                <td>2025-01-12</td>
+                                <td>2025-01-18</td>
+                                <td>RM 2,549.00</td>
+                                <td>Open</td>
+                                <td>
+                                    <a asp-area="Inventory" asp-controller="PurchaseOrder" asp-action="ViewPurchaseOrderDetails">
+                                        <i class="las la-eye text-primary font-16"></i></a>
+                                    @* <a href="#" class="ms-2"><i class="las la-pen text-primary font-16"></i></a>
+                                    <a href="#" class="ms-2"><i class="las la-trash-alt text-primary font-16"></i></a> *@
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="d-none">2</td>
+                                <td>PRJ/PO/20250111/005</td>
+                                <td>2025-01-11</td>
+                                <td>2025-01-20</td>
+                                <td>RM 2,789.00</td>
+                                <td>Drafted</td>
+                                <td>
+                                    @* <a href="#"><i class="las la-eye text-primary font-16"></i></a> *@
+                                    <a asp-area="Inventory" asp-controller="PurchaseOrder" asp-action="PurchaseOrderEditDetails" class="">
+                                        <i class="las la-pen text-primary font-16"></i></a>
+                                    @* <a href="#" class="ms-2"><i class="las la-trash-alt text-primary font-16"></i></a> *@
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="d-none">3</td>
+                                <td>PRJ/PO/20250110/004</td>
+                                <td>2025-01-10</td>
+                                <td>2025-01-15</td>
+                                <td>RM 1,839.00</td>
+                                <td>Created Sales Order</td>
+                                <td>
+                                    <a asp-area="Inventory" asp-controller="PurchaseOrder" asp-action="ViewPurchaseOrderDetails" class="">
+                                        <i class="las la-eye text-primary font-16"></i></a>
+                                    <a asp-area="Inventory" asp-controller="PurchaseOrder" asp-action="PurchaseOrderCreatedSalesOrderEditDetails" class="ms-2">
+                                        <i class="las la-pen text-primary font-16"></i></a>
+                                    <a class="ms-2" onclick="deleteRowData(this);">
+                                        <i class="las la-trash-alt text-primary font-16"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="d-none">4</td>
+                                <td>PRJ/PO/20250108/003</td>
+                                <td>2025-01-08</td>
+                                <td>2025-01-12</td>
+                                <td>RM 2,400.00</td>
+                                <td>Rejected</td>
+                                <td>
+                                    <a asp-area="Inventory" asp-controller="PurchaseOrder" asp-action="ViewPurchaseOrderDetails" class="">
+                                        <i class="las la-eye text-primary font-16"></i></a>
+                                    @* <a href="#" class="ms-2"><i class="las la-pen text-primary font-16"></i></a>
+                                    <a href="#" class="ms-2"><i class="las la-trash-alt text-primary font-16"></i></a> *@
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="d-none">5</td>
+                                <td>PRJ/PO/20250105/002</td>
+                                <td>2025-01-05</td>
+                                <td>2025-01-15</td>
+                                <td>RM 6,500.00</td>
+                                <td>Ready to Receive</td>
+                                <td>
+                                    <a asp-area="Inventory" asp-controller="PurchaseOrder" asp-action="ViewPurchaseOrderDetails" class="">
+                                        <i class="las la-eye text-primary font-16"></i></a>
+                                    @*<a asp-area="Inventory" asp-controller="PurchaseOrder" asp-action="PORTREditDetails" class="ms-2">
+                                        <i class="las la-pen text-primary font-16"></i></a>
+                                     <a href="#" class="ms-2"><i class="las la-trash-alt text-primary font-16"></i></a> *@
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="d-none">5</td>
+                                <td>PRJ/PO/20250105/019</td>
+                                <td>2025-01-07</td>
+                                <td>2025-01-19</td>
+                                <td>RM 4,689.00</td>
+                                <td>InTransit</td>
+                                <td>
+                                    <a asp-area="Inventory" asp-controller="PurchaseOrder" asp-action="ViewPurchaseOrderDetails" class="">
+                                        <i class="las la-eye text-primary font-16"></i>
+                                    </a>
+                                    <a asp-area="Inventory" asp-controller="PurchaseOrder" asp-action="PurchaseOrderInTransitEditDetails" class="ms-2">
+                                        <i class="las la-pen text-primary font-16"></i>
+                                    </a>
+                                    @* <a href="#" class="ms-2"><i class="las la-trash-alt text-primary font-16"></i></a> *@
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="d-none">6</td>
+                                <td>PRJ/PO/20250105/001</td>
+                                <td>2025-01-05</td>
+                                <td>2025-01-12</td>
+                                <td>RM 4,800.00</td>
+                                <td>Received</td>
+                                <td>
+                                    <a asp-area="Inventory" asp-controller="PurchaseOrder" asp-action="ViewPurchaseOrderDetails" class="">
+                                        <i class="las la-eye text-primary font-16"></i></a>
+                                    @* <a href="#" class="ms-2"><i class="las la-pen text-primary font-16"></i></a>
+                                    <a href="#" class="ms-2"><i class="las la-trash-alt text-primary font-16"></i></a> *@
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table><!--end /table-->
+                </div><!--end /tableresponsive-->
+
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script type="text/javascript">
+
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById("startDate").setAttribute('min', today);
+        document.getElementById("endDate").setAttribute('min', today);
+
+            $(document).ready (function () {
+            // Hide all input fields initially
+              document.getElementById("searchFields").classList.add('d-none');
+            });
+
+            function updateSearchFields() {
+            const dropdown = document.getElementById("filterDropdown");
+            const selectedValue = dropdown.value;
+              document.getElementById("searchFields").classList.remove('d-none');
+
+                // Show relevant input fields based on selected value
+                if (selectedValue === "poNumber") {
+                    document.getElementById("divPOSearch").classList.remove("d-none");
+                    document.getElementById("divDateBetweenSearch").classList.add("d-none");
+                    document.getElementById("divstatusPO").classList.add("d-none");
+                } else if (selectedValue === "dateBetween") {
+                    document.getElementById("divPOSearch").classList.add("d-none");
+                    document.getElementById("divDateBetweenSearch").classList.remove("d-none");
+                    document.getElementById("divstatusPO").classList.add("d-none");
+                }
+                else if (selectedValue === "statusPO") {
+                    document.getElementById("divPOSearch").classList.add("d-none");
+                    document.getElementById("divDateBetweenSearch").classList.add("d-none");
+                    document.getElementById("divstatusPO").classList.remove("d-none");
+                }
+        }
+
+
+        
+        const swalWithBootstrapButtons1 = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-de-primary",
+                cancelButton: "btn btn-de-danger me-2"
+            },
+            buttonsStyling: false
+        });
+
+        function deleteRowData(comp){
+            swalWithBootstrapButtons1.fire({
+                title: "Are you sure?",
+                text: "Do You want to delete this?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: '<i class="mdi mdi-check-all me-2"></i>Delete',
+                cancelButtonText: '<i class="mdi mdi-window-close me-2"></i>Close',
+                // confirmButtonText: "Yes, delete it!",
+                // cancelButtonText: "No, cancel!",
+                reverseButtons: true,
+                allowOutsideClick: false
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $(comp).closest('tr')[0].remove();
+                     swalWithBootstrapButtons1.fire({
+                                title: "Deleted!",
+                                text: "Deleted successfully!",
+                                icon: "success",
+                                allowOutsideClick: false
+                            }).then(okay => {
+                                if (okay) {
+                                }
+                            });
+                }
+            });
+        }
+
+    </script>
+}

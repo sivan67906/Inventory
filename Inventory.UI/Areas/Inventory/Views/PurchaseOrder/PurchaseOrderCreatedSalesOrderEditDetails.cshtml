@@ -1,0 +1,142 @@
+﻿@section Styles {
+	<style type="text/css">
+
+	</style>
+}
+<div class="row">
+	<div class="col-12 col-lg-12">
+		<div class="card" style="">
+			<div class="card-header">
+				<div class="row align-items-center">
+					<div class="col-lg-6">
+						<h4 class="card-title">
+							Update Purchase Order Status Details
+						</h4>
+					</div>
+				</div> <!--end row-->
+			</div><!--end card-header-->
+
+			<div class="card-body">
+				<div class="row">
+					<div class="row col-lg-12 mt-2">
+						<div class="col-lg-2 mt-2">PO Number</div>
+						<div class="col-lg-4">
+							<input class="form-control mt-2" type="text" value="PRJ/PO/20250110/004" id="txtPONumber" disabled>
+						</div>
+						<div class="col-lg-2 mt-2">PO Date</div>
+						<div class="col-lg-4">
+							<input class="form-control mt-2" type="text" value="10-01-2025" id="txtPODate" disabled>
+						</div>
+					</div>
+					<div class="row col-lg-12 mt-2">
+						<div class="col-lg-2 mt-2">Expected Delivery Date</div>
+						<div class="col-lg-4">
+							<input class="form-control mt-2" type="text" value="15-01-2025" id="txtExpDeliveryDate" disabled>
+						</div>
+						<div class="col-lg-2">Warehouse</div>
+						<div class="col-lg-4">
+							<input class="form-control mt-2" type="text" value="Global Distribution Center" id="txtWarehouse" disabled>
+						</div>
+					</div>
+					<div class="row col-lg-12 mt-2">
+						<div class="col-lg-2">Delivery Address</div>
+						<div class="col-lg-4">
+							<input type="text" class="form-control" id="txtDeliveryAddress" placeholder="enter delivery address" value="1234, Jalan Bukit Bintang,Kuala Lumpur, 55100" disabled>
+						</div>
+						<div class="col-lg-2">Invoice Address</div>
+						<div class="col-lg-4">
+							<input type="text" class="form-control" id="txtInvoiceAddress" placeholder="enter invoice address" value="1234, Jalan Bukit Bintang,Kuala Lumpur, 55100" disabled>
+						</div>
+					</div>
+					<div class="row col-lg-12 mt-2">
+						<div class="col-lg-2">Remarks</div>
+						<div class="col-lg-4">
+							<textarea class="form-control" placeholder="" rows="5" id="txtRemarks" disabled>PO Created against Global Distribution Center warehouse</textarea>
+						</div>
+						<div class="col-lg-2">Status</div>
+						<div class="col-lg-4">
+							<select id="" class="form-select" aria-label="Default select example">
+								<option value="0" selected="selected">--</option>
+								<option value="1">Ready To Receive</option>
+								<option value="1">Reject</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card-body">
+				<form>
+					<div class="row">
+						<div class="table-responsive" id="divPOPrdDetails">
+							<table class="table mb-0 tblPOPrdDetails" id="tblPOPrdDetails">
+								<thead class="thead-light">
+									<tr>
+										<th>HSN Code</th>
+										<th>Bar Code</th>
+										<th>SKU Code</th>
+										<th>SKU Name</th>
+										<th>SIH Qty</th>
+										<th>Unit Price (RM)</th>
+										<th>Piece Qty</th>
+										<th>Discount(%)</th>
+										<th>Discount Amount (RM)</th>
+										<th>Value (RM)</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="product-row">
+										<td id="tdHSNCode class=" tdhsncode""="">85183000</td>
+										<td id="tdBarCode class=" tdbarcode""="">8901234567890</td>
+										<td id="tdSKUCode" class="tdSKUCode">LAP-001</td>
+										<td id="tdSKUName" class="tdSKUName">Wireless Mouse</td>
+										<td id="tdUnitPrice" class="tdUnitPrice">35.00</td>
+										<td id="tdSIHQty" class="tdSIHQty">50</td>
+										<td id="tdPieceQty" class="tdPieceQty" ondblclick="makeEditableWholeNumber(this)">5</td>
+										<td id="tdDiscountPer" class="tdDiscountPer">10.00</td>
+										<td id="tdDiscountAmt" class="tdDiscountAmt">3.50</td>
+										<td id="tdSKULineValue" class="tdSKULineValue">154.00</td>
+									</tr>
+
+									<tr class="product-row">
+										<td id="tdHSNCode class=" tdhsncode""="">85177090</td>
+										<td id="tdBarCode class=" tdbarcode""="">8901234567895</td>
+										<td id="tdSKUCode" class="tdSKUCode">CAM-001</td>
+										<td id="tdSKUName" class="tdSKUName">HD Webcam</td>
+										<td id="tdUnitPrice" class="tdUnitPrice">100.00</td>
+										<td id="tdSIHQty" class="tdSIHQty">15</td>
+										<td id="tdPieceQty" class="tdPieceQty" ondblclick="makeEditableWholeNumber(this)">8</td>
+										<td id="tdDiscountPer" class="tdDiscountPer">5.00</td>
+										<td id="tdDiscountAmt" class="tdDiscountAmt">5.00</td>
+										<td id="tdSKULineValue" class="tdSKULineValue">1705.00</td>
+									</tr>
+
+									<tr class="product-row">
+										<td id="tdHSNCode class=" tdhsncode""="">84733090</td>
+										<td id="tdBarCode class=" tdbarcode""="">8901234567893</td>
+										<td id="tdSKUCode" class="tdSKUCode">KBD-001</td>
+										<td id="tdSKUName" class="tdSKUName">Bluetooth Speaker</td>
+										<td id="tdUnitPrice" class="tdUnitPrice">150.00</td>
+										<td id="tdSIHQty" class="tdSIHQty">20</td>
+										<td id="tdPieceQty" class="tdPieceQty" ondblclick="makeEditableWholeNumber(this)">6</td>
+										<td id="tdDiscountPer" class="tdDiscountPer">20.00</td>
+										<td id="tdDiscountAmt" class="tdDiscountAmt">30.00</td>
+										<td id="tdSKULineValue" class="tdSKULineValue">690.00</td>
+									</tr>
+								</tbody>
+							</table>
+							<div id="grandTotal" class="text-end">Grand Total: 1839.00</div>
+						</div>
+					</div>
+					<div class="row mt-4 text-end ">
+						<div class="col-lg-12 ">
+							<button asp-area="Inventory" asp-controller="PurchaseOrder" asp-action="ViewPurchaseOrder" id="btnPOClose" class="btn btn-sm btn-de-primary"><i class="mdi mdi-keyboard-return me-2"></i>Back</button>
+							<button asp-area="Inventory" asp-controller="PurchaseOrder" asp-action="ViewPurchaseOrder" id="btnPOClose" class="btn btn-sm btn-de-primary"><i class="mdi mdi-keyboard-return me-2"></i>Update</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+@section Scripts {
+}
